@@ -8,13 +8,22 @@ body {
     justify-content: center;
     align-items: center;
     border: 5px solid black;
+    width: 100%;
+    margin: 0;
 }
 
 .container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 75%;
+    width: 50%;
     height: 80%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
