@@ -24,7 +24,7 @@ body {
     border: 5px solid black;
 }
 
-/* form {
+form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -41,4 +41,4 @@ body {
     margin: 20px auto;
     display: block;
 
-} */
+}
