@@ -12,35 +12,34 @@
     <div class="info-card header">
         <h1>Welcome to the Lotto</h1>
         <div class="card">
-            <form action="">
-                <h2>How Many Teams ?</h2>
-                <input type="interger" name="" id="#teams" placeholder="Total Number of Teams">
-            </form>
+            <div class="listOfTeams">
+                <label for="numTeams">Number of Teams:</label>
+                <input type="number" id="numTeams" min="2" max="20">
+                <!-- <button id="createInputs">Create Team Inputs</button> -->
+            </div>
             <form action="">
                 <h2>How many Bottom teams ?</h2>
-                <input type="number" id="numTeams" min="2" max="20">
+                <input type="number" id="bottomTeams" min="2" max="20">
             </form>
-            <form action="">
+            <form class="frpPercent">
                 <h2>First Pick Percentage </h2>
-                <input type="int" name="" id="#top_P" placeholder="First Pick Odds">
+                <span>* First Pick Odds *</span>
+                <input type="number" id="top_P" min="2" max="50">
             </form>
             <form action="">
                 <h2>Number of Lotto Picks</h2>
-                <input type="int" name="" id="#picks" placeholder="Fix Later">
+                <input type="number" id="picks" min="2" max="50">
             </form>
 
         </div>
 
-        <div class="listOfTeams">
-            <label for="numTeams">Number of Teams:</label>
-            <input type="number" id="numTeams" min="2" max="20">
-            <button id="createInputs">Create Team Inputs</button>
-        </div>
         <button id="btn">Generate Odds</button>
     </div>
+    <div id="playerOdds">
+        <div id="teamInputs"></div>
+        <div id="oddsTable"></div>
 
-    <div id="teamInputs"></div>
-    <div id="oddsTable"></div>
+    </div>
 
 
     <script src="/script.js"></script>

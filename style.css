@@ -18,24 +18,68 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 60px auto;
-    width: 40%;
+    margin: 150px auto;
+    width: 70%;
     height: 100%;
     border: 5px solid black;
 }
+
 
 form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 10px auto;
+    font-size: 2rem;
+    margin: 5px auto;
+    padding: 30px;
 }
 
-.listOfTeams {
-    display: block;
-    margin: 30px auto;
+form h2 {
+    margin: 2px;
 }
+
+.listOfTeams,
+#numTeams {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    margin: 10px auto;
+    font-size: 2rem;
+}
+
+.listOfTeams label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    margin: 2px auto;
+}
+
+input {
+    font-size: 2rem;
+    padding: 10px;
+    margin: 5px 0;
+    text-align: center;
+    width: 250px;
+    /* makes all inputs equal width */
+    box-sizing: border-box;
+}
+
+#top_P {
+    font-size: 2rem;
+    padding: 10px;
+    width: 250px;
+    /* matches the others */
+}
+
+span {
+    font-size: 1rem;
+    padding-bottom: 8px;
+    /* color: ; */
+}
+
 
 #btn {
     margin: 20px auto;
