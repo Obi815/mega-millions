@@ -19,13 +19,15 @@ body {
     justify-content: center;
     align-items: center;
     margin: 150px auto 1px auto;
-    width: 70%;
+    width: 50%;
     height: 100%;
     border: 5px solid black;
     border-radius: 40px;
 }
 
 .info-card h1 {
+    margin: 3rem auto 6rem auto;
+    text-align: center;
     font-size: 5rem;
 }
 
@@ -41,7 +43,8 @@ form {
 }
 
 form h2 {
-    margin: 2px;
+    margin: 2px auto;
+    text-align: center;
 }
 
 .listOfTeams,
@@ -109,7 +112,7 @@ span {
     justify-content: center;
     align-items: center;
     margin: 150px auto;
-    width: 70%;
+    width: 50%;
     height: 100%;
     border: 5px solid black;
     border-radius: 40px;
@@ -119,17 +122,31 @@ span {
 #teamNames {
     display: flex;
     flex-wrap: wrap;
+    /* allow wrapping */
     justify-content: center;
-    gap: 20%;
-    /* width: 100%; */
+    /* center the rows */
+    gap: 20px;
+    /* space between items */
+    width: 100%;
 }
 
-#teamNames input {
-    flex: 1 1 45%;
-    /* take ~45% of the row each (2 per row) */
+.teamWrapper {
+    flex-direction: 1 1 45%;
+    /* ~2 per row */
     min-width: 200px;
-    /* make sure they're not too small */
+    /* prevent shrinking too small */
+}
+
+.teamWrapper input {
+    width: 100%;
+    /* fill the wrapper */
     font-size: 1.5rem;
     padding: 10px;
     box-sizing: border-box;
+}
+
+#teamInputs h2 {
+    margin: 2px auto;
+    text-align: center;
+    font-size: 2rem;
 }
