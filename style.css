@@ -138,6 +138,7 @@ span {
     /* center items horizontally */
     gap: 20px;
     /* space between items */
+    padding-bottom: 30px;
 }
 
 .teamWrapper {
