@@ -130,23 +130,34 @@ span {
     width: 100%;
 }
 
+#teamInputs {
+    display: flex;
+    flex-wrap: wrap;
+    /* allow items to go to next line */
+    justify-content: center;
+    /* center items horizontally */
+    gap: 20px;
+    /* space between items */
+}
+
 .teamWrapper {
-    flex-direction: 1 1 45%;
-    /* ~2 per row */
+    flex: 0 0 45%;
+    /* roughly 2 per row */
     min-width: 200px;
     /* prevent shrinking too small */
 }
 
 .teamWrapper input {
     width: 100%;
-    /* fill the wrapper */
+    /* fill wrapper */
     font-size: 1.5rem;
-    padding: 10px;
+    padding: 8px;
     box-sizing: border-box;
 }
 
+
 #teamInputs h2 {
-    margin: 2px auto;
+    margin: 20px auto 10px auto;
     text-align: center;
-    font-size: 2rem;
+    font-size: 3rem;
 }

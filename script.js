@@ -1,22 +1,28 @@
-document.querySelector('#btn').addEventListener('click', inputPlayers)
+document.querySelector('#btn').addEventListener('click', inputPlayers);
 
 function inputPlayers() {
-    let number = parseInt(document.querySelector('#numTeams').value);
+    const number = parseInt(document.querySelector('#numTeams').value);
     const container = document.querySelector('#teamInputs');
-    container.innerHTML = '';
+    container.innerHTML = ''; // clear old content
 
+    // Create header
+    const header = document.createElement('h2');
+    header.textContent = "Who's All Playing";
+    header.style.textAlign = 'center';
+    container.appendChild(header);
+
+    // Create inputs
     for (let i = 0; i < number; i++) {
         const wrapper = document.createElement('div');
-        wrapper.className = 'teamWrapper';  // new container for flex styling
-
-        players = document.querySelector('h2').innerHTML = "Who's All Playing"
+        wrapper.className = 'teamWrapper';
 
         const input = document.createElement('input');
         input.type = 'text';
         input.placeholder = `Team ${i + 1} Name`;
-        input.id = `teamNames`;
+        input.id = `team-${i}`;
 
         wrapper.appendChild(input);
         container.appendChild(wrapper);
     }
 }
+
