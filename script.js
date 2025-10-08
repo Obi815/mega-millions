@@ -1,5 +1,16 @@
-// Add event listener to the "Generate Odds" button
-document.querySelector('#btn').addEventListener('click', inputPlayers);
+// Wait for the DOM to load
+document.addEventListener("DOMContentLoaded", () => {
+    // Hide #playerOdds initially
+    const playerOdds = document.querySelector('#playerOdds');
+    playerOdds.classList.add('hidden');
+
+    // Add event listener to "Generate Odds" button
+    document.querySelector('#btn').addEventListener('click', () => {
+        inputPlayers();
+        // When clicked, reveal the player odds section
+        playerOdds.classList.remove('hidden');
+    });
+});
 
 function inputPlayers() {
     // 1. Get the number of teams from the input field
@@ -11,7 +22,7 @@ function inputPlayers() {
 
     // 3. Create a wrapper div for the header and direction span
     const headerWrapper = document.createElement('div');
-    headerWrapper.style.width = '100%';       // make it full-width so text can be centered
+    headerWrapper.style.width = '100%';       // make it full width
     headerWrapper.style.textAlign = 'center'; // center everything inside
 
     // 4. Create the main header
@@ -20,9 +31,10 @@ function inputPlayers() {
 
     // 5. Create the direction span under the header
     const directionSpan = document.createElement('span');
-    directionSpan.textContent = " Enter Worst to Best Teams";
-    directionSpan.style.display = 'block';    // make span block-level so it goes under header
-    directionSpan.style.marginTop = '10px';   // spacing between header and span
+    directionSpan.textContent = "Enter Worst to Best Teams";
+    directionSpan.style.display = 'block';
+    directionSpan.style.marginTop = '10px';
+    directionSpan.style.textAlign = 'center'; // ✅ ensures it's centered
 
     // 6. Append the header and span to the wrapper
     headerWrapper.appendChild(header);

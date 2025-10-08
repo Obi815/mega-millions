@@ -11,6 +11,7 @@ body {
     /* border: 5px solid black; */
     width: 100%;
     margin: 0;
+    padding-bottom: 10rem;
 }
 
 .info-card {
@@ -116,7 +117,11 @@ span {
     height: 100%;
     border: 5px solid black;
     border-radius: 40px;
-    margin: .5px auto 50px auto;
+    margin: 60px auto 50px auto;
+}
+
+.hidden {
+    display: none !important;
 }
 
 #teamNames {
