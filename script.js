@@ -1,5 +1,3 @@
-
-
 let vantaEffect;
 
 document.addEventListener("DOMContentLoaded", function () {
