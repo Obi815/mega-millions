@@ -1,16 +1,23 @@
 // Wait for the DOM to load
 document.addEventListener("DOMContentLoaded", () => {
-    // Hide #playerOdds initially
     const playerOdds = document.querySelector('#playerOdds');
+    const generateBtn = document.querySelector('#btn');
+
+    // initially hidden
     playerOdds.classList.add('hidden');
 
-    // Add event listener to "Generate Odds" button
-    document.querySelector('#btn').addEventListener('click', () => {
-        inputPlayers();
-        // When clicked, reveal the player odds section
-        playerOdds.classList.remove('hidden');
+    // click "Generate Odds" to show team inputs
+    generateBtn.addEventListener('click', () => {
+        inputPlayers();             // generate team input boxes
+        playerOdds.classList.remove('hidden'); // show the card
+    });
+
+    // click "Calculate Odds" to generate the odds table
+    document.getElementById('calcOdds').addEventListener('click', () => {
+        computeAndRenderOdds();
     });
 });
+
 
 function inputPlayers() {
     // 1. Get the number of teams from the input field
@@ -60,6 +67,136 @@ function inputPlayers() {
         // Add the wrapper to the main container
         container.appendChild(wrapper);
     }
+}
+
+// Call this after you've created the team inputs and filled them
+function computeAndRenderOdds() {
+    // read configuration inputs
+    const N = parseInt(document.getElementById('numTeams').value, 10);
+    const B = parseInt(document.getElementById('bottomTeams').value, 10);
+    const P_top = parseFloat(document.getElementById('top_P').value);
+
+    if (!Number.isInteger(N) || N <= 1) {
+        alert('Enter a valid number of teams (>=2).');
+        return;
+    }
+    if (!Number.isInteger(B) || B < 0 || B > N) {
+        alert('Enter valid bottom teams (0 <= bottom <= total teams).');
+        return;
+    }
+    if (isNaN(P_top) || P_top < 0) {
+        alert('Enter a valid first pick % (>=0).');
+        return;
+    }
+
+    // collect team names (assumes team-0 .. team-(N-1) exist)
+    const teams = [];
+    for (let i = 0; i < N; i++) {
+        const el = document.getElementById(`team-${i}`);
+        const name = el && el.value.trim() ? el.value.trim() : `Team ${i + 1}`;
+        teams.push(name);
+    }
+
+    // SPECIAL CASE: if B == N, every team is in bottom block -> equalize
+    if (B === N) {
+        const equalPct = +(100 / N).toFixed(4);
+        const odds = teams.map(t => ({ team: t, pct: equalPct }));
+        renderOddsTable(odds);
+        return;
+    }
+
+    // step A: allocate bottom block
+    const bottomBlockTotal = B * P_top;
+    let remainingPct = 100 - bottomBlockTotal;
+
+    // If remainingPct <= 0, we can't give the rest negative percentage.
+    // Fallback: normalize all weights equally (safe default).
+    if (remainingPct <= 0) {
+        // If P_top is too large, just distribute 100% proportionally:
+        // bottom teams get P_top but we'll normalize so total = 100.
+        // easiest: assign raw weights and normalize
+        const raw = new Array(N).fill(1);
+        // but we want bottom B to be heavier, so give them a factor of P_top weight:
+        // We'll just use equal distribution for simplicity:
+        const totalRaw = raw.reduce((s, v) => s + v, 0);
+        const odds = teams.map(t => ({ team: t, pct: +(100 / N).toFixed(4) }));
+        renderOddsTable(odds);
+        return;
+    }
+
+    // step B: compute linear weights for remaining M teams
+    const M = N - B;
+    const S = (M * (M + 1)) / 2; // sum of 1..M
+    const step = remainingPct / S; // percent per weight unit
+
+    // build odds array in order worst -> best
+    const odds = [];
+
+    // bottom teams first (indices 0 .. B-1 are worst teams if your inputs follow Worst->Best)
+    for (let i = 0; i < B; i++) {
+        odds.push({ team: teams[i], pct: +P_top.toFixed(4) });
+    }
+
+    // remaining teams: i from 0..M-1 correspond to teams B .. N-1
+    // assign weights: M, M-1, ..., 1
+    for (let i = 0; i < M; i++) {
+        const weight = M - i;               // largest weight goes to teams[B + 0]
+        const pct = +(weight * step).toFixed(4);
+        odds.push({ team: teams[B + i], pct });
+    }
+
+    // rounding may introduce a tiny error. Fix by adjusting last entry so total = 100
+    let total = odds.reduce((s, o) => s + o.pct, 0);
+    total = +(total.toFixed(6));
+    const diff = +(100 - total).toFixed(6);
+    if (Math.abs(diff) > 0.0001) {
+        // add diff to the best team (last in odds array)
+        odds[odds.length - 1].pct = +((odds[odds.length - 1].pct + diff).toFixed(4));
+    }
+
+    renderOddsTable(odds);
+}
+
+// Helper: renders a simple table in #oddsTable
+function renderOddsTable(oddsArr) {
+    const container = document.getElementById('oddsTable');
+    container.innerHTML = ''; // clear previous
+
+    const table = document.createElement('table');
+    table.style.width = '100%';
+    table.style.borderCollapse = 'collapse';
+    table.style.fontSize = '1.25rem';
+
+    const thead = document.createElement('thead');
+    thead.innerHTML = `<tr>
+        <th style="text-align:left; padding:8px; border-bottom:2px solid #444;">Team</th>
+        <th style="text-align:right; padding:8px; border-bottom:2px solid #444;">% for #1 pick</th>
+      </tr>`;
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+
+    oddsArr.forEach((o, idx) => {
+        const tr = document.createElement('tr');
+
+        const tdTeam = document.createElement('td');
+        tdTeam.textContent = o.team;
+        tdTeam.style.padding = '8px';
+        tdTeam.style.borderBottom = '1px solid #ddd';
+
+        const tdPct = document.createElement('td');
+        tdPct.textContent = `${+(o.pct).toFixed(2)}%`;
+        tdPct.style.padding = '8px';
+        tdPct.style.textAlign = 'right';
+        tdPct.style.borderBottom = '1px solid #ddd';
+
+        tr.appendChild(tdTeam);
+        tr.appendChild(tdPct);
+        tbody.appendChild(tr);
+    });
+
+    table.appendChild(tbody);
+    container.appendChild(table);
 }
 
 
