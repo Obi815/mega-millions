@@ -1,3 +1,38 @@
+
+
+let vantaEffect;
+
+document.addEventListener("DOMContentLoaded", function () {
+    vantaEffect = VANTA.WAVES({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0xb5791,
+        shininess: 50.00,
+        waveHeight: 20.00,
+        waveSpeed: 0.7,
+        zoom: 0.9
+    });
+});
+
+window.addEventListener('resize', () => {
+    if (vantaEffect) vantaEffect.resize(); // 🔁 keeps waves stretched on window change
+});
+
+// Optional: re-trigger resize when user adds content
+document.querySelector('#btn').addEventListener('click', () => {
+    setTimeout(() => {
+        if (vantaEffect) vantaEffect.resize(); // ⏱️ give the DOM time to expand, then resize waves
+    }, 300);
+});
+
+
+
 // Wait for the DOM to load
 document.addEventListener("DOMContentLoaded", () => {
     const playerOdds = document.querySelector('#playerOdds');

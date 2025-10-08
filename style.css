@@ -2,6 +2,22 @@
     box-sizing: border-box;
 }
 
+#vanta-bg {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+
+.info-card,
+#playerOdds {
+    position: relative;
+    z-index: 1;
+    /* content above the Vanta canvas */
+}
+
+
+
+
 body {
     font-family: 'Fulbo-Retro';
     display: flex;
@@ -112,7 +128,7 @@ input {
 span {
     font-size: 1rem;
     padding-bottom: 8px;
-    color: rgb(112, 112, 112);
+    color: rgb(255, 254, 254);
 }
 
 
