@@ -48,6 +48,8 @@ form h2 {
     text-align: center;
 }
 
+
+
 .listOfTeams,
 #numTeams {
     display: flex;
@@ -58,12 +60,32 @@ form h2 {
     font-size: 2rem;
 }
 
-.listOfTeams label {
+.listOfTeams {
     display: flex;
+    flex-direction: column;
+    /* stack label + input vertically */
     justify-content: center;
+    /* center vertically inside the container */
     align-items: center;
+    /* center horizontally */
+    width: 100%;
+    /* take full width so content is centered on small screens */
+}
+
+.listOfTeams label {
     font-size: 3rem;
-    margin: 2px auto;
+    text-align: center;
+    /* always center the text */
+    margin-bottom: 10px;
+    /* spacing below label */
+}
+
+.listOfTeams input {
+    width: 80%;
+    /* shrink on small screens */
+    max-width: 250px;
+    /* don’t grow too big on large screens */
+    text-align: center;
 }
 
 input {
