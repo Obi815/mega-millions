@@ -239,9 +239,12 @@ function renderOddsTable(oddsArr) {
     // 🎲 Run a weighted lottery draw based on the odds table
     document.getElementById('runLottery').addEventListener('click', () => {
         runLottery();
+
+        lotteryResults.classList.remove('hidden'); // show results
     });
 
     function runLottery() {
+
         const table = document.querySelector('#oddsTable table');
         if (!table) {
             alert('Please calculate odds first.');
