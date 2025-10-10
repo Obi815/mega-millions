@@ -215,21 +215,90 @@ function renderOddsTable(oddsArr) {
         const tdTeam = document.createElement('td');
         tdTeam.textContent = o.team;
         tdTeam.style.padding = '8px';
-        tdTeam.style.borderBottom = '1px solid #ddd';
 
         const tdPct = document.createElement('td');
         tdPct.textContent = `${+(o.pct).toFixed(2)}%`;
         tdPct.style.padding = '8px';
         tdPct.style.textAlign = 'right';
-        tdPct.style.borderBottom = '1px solid #ddd';
+
+        //  Add border only if NOT the last row
+        if (idx !== oddsArr.length - 1) {
+            tdTeam.style.borderBottom = '1px solid #ddd';
+            tdPct.style.borderBottom = '1px solid #ddd';
+        }
 
         tr.appendChild(tdTeam);
         tr.appendChild(tdPct);
         tbody.appendChild(tr);
     });
 
+
     table.appendChild(tbody);
     container.appendChild(table);
+
+    // 🎲 Run a weighted lottery draw based on the odds table
+    document.getElementById('runLottery').addEventListener('click', () => {
+        runLottery();
+    });
+
+    function runLottery() {
+        const table = document.querySelector('#oddsTable table');
+        if (!table) {
+            alert('Please calculate odds first.');
+            return;
+        }
+
+        // 1️ Read team names and percentages from the odds table
+        const rows = Array.from(table.querySelectorAll('tbody tr'));
+        const teams = rows.map(row => {
+            const tds = row.querySelectorAll('td');
+            return {
+                team: tds[0].textContent.trim(),
+                pct: parseFloat(tds[1].textContent.replace('%', '').trim())
+            };
+        });
+
+        // 2️ Create a weighted pool
+        const pool = [];
+        teams.forEach(t => {
+            const weight = Math.round(t.pct * 100); // higher pct = more entries
+            for (let i = 0; i < weight; i++) pool.push(t.team);
+        });
+
+        // 3️ Shuffle and draw without replacement
+        const results = [];
+        const tempPool = [...pool];
+
+        while (teams.length > 0) {
+            const rand = Math.floor(Math.random() * tempPool.length);
+            const winner = tempPool[rand];
+
+            // find the first team in teams list that matches winner and remove it
+            const idx = teams.findIndex(t => t.team === winner);
+            if (idx !== -1) {
+                results.push(teams[idx].team);
+                teams.splice(idx, 1);
+                // remove all occurrences of that team from pool
+                for (let i = tempPool.length - 1; i >= 0; i--) {
+                    if (tempPool[i] === winner) tempPool.splice(i, 1);
+                }
+            }
+        }
+
+        // 4️ Show results
+        const resultsDiv = document.getElementById('lotteryResults');
+        resultsDiv.innerHTML = '<h2>🏆 Draft Order</h2>';
+
+        const list = document.createElement('ol');
+        results.forEach(t => {
+            const li = document.createElement('li');
+            li.textContent = t;
+            list.appendChild(li);
+        });
+
+        resultsDiv.appendChild(list);
+    }
+
 }
 
 

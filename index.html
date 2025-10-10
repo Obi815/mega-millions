@@ -11,44 +11,45 @@
 
 
 <body>
-    <div id="vanta-bg">
-
-        <div class="info-card header">
-            <h1>Welcome to the Lotto</h1>
-            <div class="card">
-                <div class="listOfTeams">
-                    <label for="numTeams">Number of Teams:</label>
-                    <input type="number" id="numTeams" min="2" max="20">
-                    <!-- <button id="createInputs">Create Team Inputs</button> -->
-                </div>
-                <form action="">
-                    <h2>How many Bottom teams ?</h2>
-                    <input type="number" id="bottomTeams" min="2" max="20">
-                </form>
-                <form class="frpPercent">
-                    <h2>First Pick Percentage </h2>
-                    <span>* First Pick Odds *</span>
-                    <input type="number" id="top_P" min="2" max="50">
-                </form>
-                <form action="">
-                    <h2>Number of Lotto Picks</h2>
-                    <input type="number" id="picks" min="2" max="50">
-                </form>
-
+    <div id="vanta-bg"></div>
+    <div class="info-card header">
+        <h1>Welcome to the Lotto</h1>
+        <div class="card">
+            <div class="listOfTeams">
+                <label for="numTeams">Number of Teams:</label>
+                <input type="number" id="numTeams" min="2" max="20">
+                <!-- <button id="createInputs">Create Team Inputs</button> -->
             </div>
-
-            <button id="btn">Enter Teams </button>
+            <form action="">
+                <h2>How many Bottom teams ?</h2>
+                <input type="number" id="bottomTeams" min="2" max="20">
+            </form>
+            <form class="frpPercent">
+                <h2>First Pick Percentage </h2>
+                <span>* First Pick Odds *</span>
+                <input type="number" id="top_P" min="2" max="50">
+            </form>
+            <form action="">
+                <h2>Number of Lotto Picks</h2>
+                <input type="number" id="picks" min="2" max="50">
+            </form>
         </div>
-        <div id="playerOdds" class="hidden">
-            <div id="teamInputs" class="close">
-                <h2></h2>
-            </div>
 
-            <!-- New button for users to calculate odds -->
-            <button id="calcOdds" type="button">Calculate Odds</button>
+        <button id="btn">Enter Teams </button>
 
-            <div id="oddsTable"></div>
+    </div>
+    <div id="playerOdds" class="hidden">
+        <div id="teamInputs" class="close">
+            <h2></h2>
         </div>
+
+        <!-- New button for users to calculate odds -->
+        <button id="calcOdds" type="button">Calculate Odds</button>
+        <button id="runLottery" type="button">Run Lottery</button>
+
+        <div id="oddsTable"></div>
+        <div id="lotteryResults"></div>
+
     </div>
 
     <!-- THREE.js (needed for Vanta) -->
