@@ -216,7 +216,7 @@ button {
     margin-bottom: 20px;
 }
 
-/* #lotteryResults {
+#lotteryResults {
     margin-top: 20px;
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
@@ -228,4 +228,4 @@ button {
 #lotteryResults ol {
     margin-top: 10px;
     padding-left: 30px;
-} */
+}
