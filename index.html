@@ -8,56 +8,72 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 
-
-
 <body>
     <div id="vanta-bg"></div>
+
     <div class="info-card header">
         <h1>Welcome to the Lotto</h1>
+
         <div class="card">
             <div class="listOfTeams">
+                <span id="helpLink" class="help-link">Need Help?</span>
+
                 <label for="numTeams">Number of Teams:</label>
-                <input type="number" id="numTeams" min="2" max="20">
-                <!-- <button id="createInputs">Create Team Inputs</button> -->
+                <input type="number" id="numTeams" min="2" max="50">
             </div>
-            <form action="">
-                <h2>How many Bottom teams ?</h2>
-                <input type="number" id="bottomTeams" min="2" max="20">
+
+            <form>
+                <h2>How many Bottom teams?</h2>
+                <input type="number" id="bottomTeams" min="0" max="50">
             </form>
+
             <form class="frpPercent">
-                <h2>First Pick Percentage </h2>
+                <h2>First Pick Percentage</h2>
                 <span>* First Pick Odds *</span>
-                <input type="number" id="top_P" min="2" max="50">
+                <input type="number" id="top_P" min="0" max="50">
             </form>
-            <form action="">
+
+            <form>
                 <h2>Number of Lotto Picks</h2>
-                <input type="number" id="picks" min="2" max="50">
+                <input type="number" id="picks" min="1" max="50">
             </form>
         </div>
 
-        <button id="btn">Enter Teams </button>
-
+        <button id="btn">Enter Teams</button>
     </div>
-    <div id="playerOdds" class="hidden">
-        <div id="teamInputs" class="close">
-            <h2></h2>
-        </div>
 
-        <!-- New button for users to calculate odds -->
+    <div id="playerOdds" class="hidden">
+        <div id="teamInputs"></div>
+
         <button id="calcOdds" type="button">Calculate Odds</button>
         <button id="runLottery" type="button">Run Lottery</button>
 
         <div id="oddsTable"></div>
         <div id="lotteryResults" class="hidden"></div>
-
     </div>
 
-    <!-- THREE.js (needed for Vanta) -->
+    <!-- HELP POPUP -->
+    <div id="helpCard" class="hidden">
+        <div class="help-content">
+            <button id="closeHelpX" class="close-x">&times;</button>
+            <h2>How to Use the Fantasy Draft Lotto</h2>
+
+            <p>🎯 This tool randomly determines draft order while giving higher chances to weaker teams.</p>
+            <p>1️⃣ <strong>Number of Teams:</strong> Total teams in your draft.</p>
+            <p>2️⃣ <strong>Bottom Teams:</strong> Teams that performed worst last season. Higher chance for #1 pick.</p>
+            <p>3️⃣ <strong>First Pick Percentage:</strong> % chance worst teams get #1 pick.</p>
+            <p>4️⃣ <strong>Number of Lotto Picks:</strong> How many draft positions are randomly assigned.</p>
+            <p>5️⃣ Click <strong>"Enter Teams"</strong> to generate team input boxes (worst → best order).</p>
+            <p>6️⃣ Click <strong>"Calculate Odds"</strong> to see % chance for #1 pick.</p>
+            <p>7️⃣ Click <strong>"Run Lottery"</strong> to randomly determine draft order.</p>
+
+            <button id="closeHelp" class="help-btn">Got it!</button>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"></script>
     <script src="./script.js"></script>
-
-
 </body>
 
 </html>

@@ -2,6 +2,16 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Fulbo-Retro', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-color: dodgerblue;
+}
+
 #vanta-bg {
     position: fixed;
     top: 0;
@@ -9,227 +19,223 @@
     width: 100%;
     height: 100%;
     z-index: -1;
-    /* keeps it behind everything */
 }
 
 .info-card,
 #playerOdds {
     position: relative;
     z-index: 1;
-    /* content above the Vanta canvas */
-}
-
-
-body {
-    font-family: 'Fulbo-Retro';
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* border: 5px solid black; */
-    width: 100%;
-    margin: 0;
-    /* padding-bottom: 10rem; */
-    /* background-color: dodgerblue; */
-}
-
-.info-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 150px auto 1px auto;
     width: 50%;
-    height: 100%;
+    margin: 50px auto;
     border: 5px solid black;
     border-radius: 40px;
+    padding: 20px;
+    background: white;
+
 }
 
 .info-card h1 {
     font-size: 4rem;
-    margin: 3rem auto 6rem auto;
     text-align: center;
-    /* font-size: 5rem; */
+    margin-bottom: 30px;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    margin: 5px auto;
-    padding: 30px;
-}
-
-form h2 {
-    margin: 2px auto;
-    text-align: center;
-}
-
-.listOfTeams,
-#numTeams {
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    justify-content: center;
-    margin: 10px auto;
-    font-size: 2rem;
-}
-
+form,
 .listOfTeams {
     display: flex;
     flex-direction: column;
-    /* stack label + input vertically */
-    justify-content: center;
-    /* center vertically inside the container */
     align-items: center;
-    /* center horizontally */
-    width: 100%;
-    /* take full width so content is centered on small screens */
+    margin-bottom: 20px;
 }
 
+form h2,
 .listOfTeams label {
-    font-size: 3rem;
+    font-size: 2rem;
     text-align: center;
-    /* always center the text */
     margin-bottom: 10px;
-    /* spacing below label */
-}
-
-.listOfTeams input {
-    width: 80%;
-    /* shrink on small screens */
-    max-width: 250px;
-    /* don’t grow too big on large screens */
-    text-align: center;
 }
 
 input {
-    font-size: 2rem;
-    padding: 10px;
-    margin: 5px 0;
+    font-size: 1.5rem;
+    padding: 8px;
     text-align: center;
     width: 250px;
-    /* makes all inputs equal width */
-    box-sizing: border-box;
     border: 3px solid dodgerblue;
     border-radius: 25px;
-    background-color: white;
-    font-family: inherit;
-}
-
-#top_P {
-    font-size: 2rem;
-    padding: 10px;
-    width: 250px;
-    /* matches the others */
-}
-
-span {
-    font-size: 1rem;
-    padding-bottom: 8px;
-    color: rgb(255, 254, 254);
+    margin-bottom: 10px;
+    font-family: 'Fulbo-Retro', sans-serif;
 }
 
 #btn,
 button {
-    margin: 60px auto 30px auto;
-    display: block;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    padding: 12px 20px;
     border-radius: 25px;
     border: 3px solid dodgerblue;
-    background-color: white;
-    font-family: inherit;
-    padding: 15px;
+    background: white;
     cursor: pointer;
-}
-
-#playerOdds {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 150px auto;
-    width: 50%;
-    height: 100%;
-    border: 5px solid black;
-    border-radius: 40px;
-    margin: 60px auto 50px auto;
-}
-
-.hidden {
-    display: none !important;
-}
-
-#teamNames {
-    display: flex;
-    flex-wrap: wrap;
-    /* allow wrapping */
-    justify-content: center;
-    /* center the rows */
-    gap: 20px;
-    /* space between items */
-    width: 100%;
+    margin-top: 10px;
 }
 
 #teamInputs {
     display: flex;
     flex-wrap: wrap;
-    /* allow items to go to next line */
     justify-content: center;
-    /* center items horizontally */
-    gap: 20px;
-    /* space between items */
-    padding-bottom: 30px;
+    gap: 15px;
+    width: 100%;
+
+
 }
 
 .teamWrapper {
     flex: 0 0 45%;
-    /* roughly 2 per row */
-    min-width: 200px;
-    /* prevent shrinking too small */
+    min-width: 150px;
+    display: flex;
+    justify-content: center;
 }
 
 .teamWrapper input {
     width: 100%;
-    /* fill wrapper */
-    font-size: 1.5rem;
+}
+
+#oddsTable table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#oddsTable th,
+#oddsTable td {
     padding: 8px;
-    box-sizing: border-box;
-}
-
-#teamInputs h2 {
-    margin: 20px auto 10px auto;
-    text-align: center;
-    font-size: 3rem;
-}
-
-#oddsTable {
-    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
 }
 
 #lotteryResults {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     margin-top: 20px;
-    background: rgba(255, 255, 255, 0.494);
     padding: 20px;
     border-radius: 12px;
-    color: #020000;
-    font-size: 1.8rem;
-    margin-bottom: 3rem;
+    font-size: 2rem;
+    background: rgba(255, 255, 255, 0.9);
 }
 
-#lotteryResults h2 {
-    font-size: 4rem;
+li {
+    padding-bottom: 15px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+
+    .info-card,
+    #playerOdds {
+        width: 90%;
+    }
+
+    .info-card h1 {
+        font-size: 3rem;
+    }
+
+    input {
+        width: 90%;
+        max-width: 220px;
+    }
+
+    #btn,
+    button {
+        width: 90%;
+        max-width: 250px;
+    }
+
+    .teamWrapper {
+        flex: 0 0 80%;
+        min-width: 150px;
+    }
+
+    #lotteryResults {
+        font-size: 1.5rem;
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* HELP POPUP */
+.help-link {
+    color: rgb(3, 0, 0);
+    text-decoration: underline;
+    cursor: pointer;
     margin-bottom: 10px;
-    text-align: center;
 }
 
-#lotteryResults ol {
-    margin-top: 10px;
-    padding-left: 30px;
+#helpCard {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.help-content {
+    background: white;
+    padding: 50px 30px 30px 30px;
+    /* extra top padding for close-x */
+    border-radius: 20px;
+    max-width: 90%;
+    width: 500px;
+    font-size: 1.5rem;
+    overflow-y: auto;
+    max-height: 80%;
+    position: relative;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.close-x {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    /* ensures it’s above all modal content */
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 768px) {
+    .help-content {
+        padding: 60px 20px 20px 20px;
+        /* more top padding */
+    }
+
+    .close-x {
+        top: 10px;
+        right: 10px;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .help-content {
+        padding: 70px 15px 15px 15px;
+    }
+
+    .close-x {
+        top: 8px;
+        right: 8px;
+        font-size: 1.2rem;
+    }
 }
