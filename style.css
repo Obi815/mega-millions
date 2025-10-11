@@ -57,7 +57,10 @@ form h2,
     font-size: 2rem;
     text-align: center;
     margin-bottom: 10px;
-    font-family: inherit;
+}
+
+label {
+    font-family: 'Fulbo-Retro', sans-serif;
 }
 
 input {
